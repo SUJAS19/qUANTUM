@@ -1,0 +1,116 @@
+# qUANTUM Configuration File
+
+# Data Settings
+data:
+  # Data storage paths
+  raw_data_path: "data/raw"
+  processed_data_path: "data/processed"
+  
+  # Data sources
+  sources:
+    - "yfinance"
+    - "nsepy"
+  
+  # Default date range
+  default_start_date: "2020-01-01"
+  default_end_date: "2024-12-31"
+  
+  # Number of securities to track
+  max_securities: 500
+  
+  # Data update frequency
+  update_frequency: "daily"  # daily, weekly, monthly
+
+# Backtesting Settings
+backtesting:
+  initial_capital: 100000
+  commission: 0.001  # 0.1% per trade
+  slippage: 0.0005   # 0.05%
+  
+  # Risk management
+  max_position_size: 0.2  # 20% of capital per position
+  stop_loss: 0.05         # 5% stop loss
+  take_profit: 0.15       # 15% take profit
+
+# Screening Settings
+screening:
+  fundamental:
+    min_market_cap: 1000  # in crores
+    max_pe_ratio: 25
+    min_roe: 15
+    max_debt_equity: 1.0
+    min_current_ratio: 1.5
+  
+  technical:
+    rsi_oversold: 30
+    rsi_overbought: 70
+    ma_periods: [20, 50, 200]
+    volume_threshold: 1.5  # 1.5x average volume
+
+# Options Settings
+options:
+  # Greeks thresholds
+  min_delta: 0.3
+  max_delta: 0.7
+  min_gamma: 0.01
+  
+  # Volatility
+  iv_percentile_low: 25
+  iv_percentile_high: 75
+  
+  # Option strategies
+  strategies:
+    - "iron_condor"
+    - "bull_call_spread"
+    - "bear_put_spread"
+    - "straddle"
+    - "strangle"
+
+# Machine Learning Settings
+ml:
+  # Model types
+  models:
+    - "linear_regression"
+    - "random_forest"
+    - "xgboost"
+    - "lstm"
+    - "arima"
+  
+  # Training settings
+  train_test_split: 0.8
+  validation_split: 0.2
+  
+  # LSTM settings
+  lstm:
+    lookback_days: 60
+    epochs: 100
+    batch_size: 32
+    units: [50, 50]
+    dropout: 0.2
+  
+  # Feature engineering
+  technical_indicators:
+    - "rsi"
+    - "macd"
+    - "bollinger_bands"
+    - "atr"
+    - "adx"
+    - "stochastic"
+
+# Risk Management
+risk:
+  max_portfolio_risk: 0.02  # 2% of capital
+  max_correlation: 0.7      # Max correlation between positions
+  var_confidence: 0.95      # VaR confidence level
+  
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_file: "logs/quantum.log"
+  
+# API Keys (use environment variables in production)
+api_keys:
+  alpha_vantage: ""
+  quandl: ""
+  nse: ""
+
